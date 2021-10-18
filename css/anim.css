@@ -1,0 +1,212 @@
+/* ANIMATIONS */
+/* Mixin to prefix properties */
+/* Text Animation */
+/* Keyframe for box-main animation */
+
+@-webkit-keyframes pre_smooth {
+  0% {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    background-color: #215b80;
+  }
+  to {
+    background-color: #cae2f1;
+    -webkit-box-shadow: inset 0px 0px 90px #215b80;
+            box-shadow: inset 0px 0px 90px #215b80;
+  }
+}
+
+@keyframes pre_smooth {
+  0% {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    background-color: #215b80;
+  }
+  to {
+    background-color: #cae2f1;
+    -webkit-box-shadow: inset 0px 0px 90px #215b80;
+            box-shadow: inset 0px 0px 90px #215b80;
+  }
+}
+
+@-webkit-keyframes connect_h_left {
+  0% {
+    -webkit-transform: translateX(0) rotate(12deg);
+    transform: translateX(0) rotate(12deg);
+  }
+  to {
+    -webkit-transform: translateX(40px) rotate(5deg);
+    transform: translateX(40px) rotate(5deg);
+  }
+}
+
+@keyframes connect_h_left {
+  0% {
+    -webkit-transform: translateX(0) rotate(12deg);
+    transform: translateX(0) rotate(12deg);
+  }
+  to {
+    -webkit-transform: translateX(40px) rotate(5deg);
+    transform: translateX(40px) rotate(5deg);
+  }
+}
+
+@-webkit-keyframes connect_h_right {
+  0% {
+    -webkit-transform: translate(40px, -20px) rotate(-30deg);
+    transform: translate(40px, -20px) rotate(-30deg);
+  }
+  to {
+    -webkit-transform: translate(0, 0) rotate(-12deg);
+    transform: translate(0, 0) rotate(-12deg);
+  }
+}
+
+@keyframes connect_h_right {
+  0% {
+    -webkit-transform: translate(40px, -20px) rotate(-30deg);
+    transform: translate(40px, -20px) rotate(-30deg);
+  }
+  to {
+    -webkit-transform: translate(0, 0) rotate(-12deg);
+    transform: translate(0, 0) rotate(-12deg);
+  }
+}
+
+@-webkit-keyframes fading {
+  0% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fading {
+  0% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes stroke_add {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes stroke_add {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@-webkit-keyframes stroke_rem {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 1000;
+  }
+}
+
+@keyframes stroke_rem {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 1000;
+  }
+}
+
+/* Classes for logo animation */
+.congrat-container {
+  -webkit-animation-name: pre_smooth;
+  -webkit-animation-duration: .5s;
+  -webkit-animation-timing-function: linear;
+  animation-name: pre_smooth;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+}
+
+.heart.fade path {
+  opacity: 0;
+  -webkit-animation-name: fading;
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-timing-function: linear;
+  animation-name: fading;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+}
+
+#heart-left {
+  -webkit-animation-name: connect_h_left;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-timing-function: ease-out;
+  animation-name: connect_h_left;
+  animation-duration: 2s;
+  animation-timing-function: ease-out;
+}
+
+#heart-right {
+  -webkit-animation-name: connect_h_right;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-timing-function: ease-out;
+  animation-name: connect_h_right;
+  animation-duration: 2s;
+  animation-timing-function: ease-out;
+}
+
+#heading-path, #w-ring-path.showed {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 0;
+  -webkit-animation-name: stroke_add;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+  animation-name: stroke_add;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+}
+
+#heading-path.stroke-remove {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  -webkit-animation-name: stroke_rem;
+  -webkit-animation-duration: 4s;
+  -webkit-animation-timing-function: linear;
+  animation-name: stroke_rem;
+  animation-duration: 4s;
+  animation-timing-function: linear;
+}
+
+#w-ring-path {
+  stroke-dashoffset: 1000;
+}
+
+.wrapper.sheet {
+  -webkit-transition: all 2s ease-out;
+  transition: all 2s ease-out;
+  -webkit-transform: translateY(100vh);
+  transform: translateY(100vh);
+}
+
+.wrapper.sheet.showed {
+  -webkit-transform: translateY(-60vh);
+  transform: translateY(-60vh);
+}
+
+.wrapper.sheet.showed > div {
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  -webkit-transform: rotate(1deg);
+  transform: rotate(1deg);
+}
+/*# sourceMappingURL=anim.css.map */

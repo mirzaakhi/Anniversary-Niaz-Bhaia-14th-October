@@ -1,0 +1,126 @@
+// ----
+// Sass (v3.3.14)
+// Compass or https://www.sassmeister.com
+// ----
+
+/* ANIMATIONS */
+// Add vendor prefixes to keyframes
+@mixin keyframe ($animation-name) {
+  @-moz-keyframes #{$animation-name} {
+    @content
+  }
+  @-o-keyframes #{$animation-name} {
+    @content
+  }
+  @-webkit-keyframes #{$animation-name} {
+    @content
+  }
+  @keyframes #{$animation-name} {
+    @content
+  }
+}
+
+@mixin animation($animation, $duration, $transition) {
+  -webkit-animation-name: $animation;
+  -webkit-animation-duration: $duration;
+  -webkit-animation-timing-function: $transition;
+  animation-name: $animation;
+  animation-duration: $duration;
+  animation-timing-function: $transition
+}
+
+/* Mixin to prefix properties */
+@mixin prefix($property, $value, $prefixes: ()) {
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: $value;
+  }
+  // Output standard non-prefixed declaration
+  #{$property}: $value;
+}
+
+/* Text Animation */
+// Define variables
+// $anim_items: 5; // number of DOM elements to animate
+// $anim_time: 1.4s; // first number of animation time
+// $koef_time: 0; // koeficient to iterate the number of animation time
+// $anim_extend: 260; // 360 // first fading number
+// $koef_extend: 200; // 180 // koeficient to iterate the number of fadings
+
+/* Keyframe for box-main animation */
+@include keyframe (pre_smooth) {
+  0% {
+    box-shadow: none;
+    background-color: #215b80
+  }
+  to {
+    background-color: #cae2f1;
+    box-shadow: inset 0px 0px 90px #215b80
+  }
+}
+@include keyframe(connect_h_left) {
+  0% {@include prefix(transform, translateX(0) rotate(12deg), webkit)}
+  to {@include prefix(transform, translateX(40px) rotate(5deg), webkit)}
+}
+@include keyframe(connect_h_right) {
+  0% {@include prefix(transform, translate(40px, -20px) rotate(-30deg), webkit)}
+  to {@include prefix(transform, translate(0, 0) rotate(-12deg), webkit)}
+}
+@include keyframe(fading) {
+  0% {opacity: 1}
+  to {opacity: 0}
+}
+@include keyframe(stroke_add) {
+  0% {stroke-dashoffset: 1000;}
+  to {stroke-dashoffset: 0;}
+}
+@include keyframe(stroke_rem) {
+  0% {stroke-dashoffset: 0;}
+  to {stroke-dashoffset: 1000;}
+}
+
+/* Classes for logo animation */
+.congrat-container {
+  @include animation(pre_smooth, 1s, linear)
+}
+.heart.fade path {
+  opacity: 0;
+  @include animation(fading, .5s, linear)
+}
+
+// #heart-left, #heart-right {
+//   &:hover, &:active {
+//      @include prefix(filter, drop-shadow(5px 5px 15px rgba(0,0,0,.75)), webkit);
+//   }
+// }
+#heart-left {
+  @include animation(connect_h_left, 2s, ease-out)
+}
+#heart-right {
+  @include animation(connect_h_right, 2s, ease-out)
+}
+
+#heading-path, #w-ring-path.showed {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 0;
+  @include animation(stroke_add, 5s, linear)
+}
+#heading-path.stroke-remove {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  @include animation(stroke_rem, 4s, linear)
+}
+#w-ring-path {
+  stroke-dashoffset: 1000;
+}
+
+.wrapper.sheet {
+  @include prefix(transition, all 2s ease-out, moz webkit);
+  @include prefix(transform, translateY(100vh), moz webkit);
+}
+.wrapper.sheet.showed {
+  @include prefix(transform, translateY(-60vh), moz webkit);
+  > div {
+    @include prefix(transform-origin, 50% 50%, moz webkit);
+    @include prefix(transform, rotate(1deg), moz webkit);
+  }
+}
